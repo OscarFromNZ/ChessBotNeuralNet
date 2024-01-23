@@ -1,6 +1,10 @@
-const Board = reqiure('./Board');
+const Board = require('./Board');
 
 let board = new Board();
+
+board.initPieces();
+
+console.log(board.getAllLegalMoves());
 
 /*
 let Network = require('./Network');
