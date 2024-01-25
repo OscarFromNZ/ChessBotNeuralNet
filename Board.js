@@ -256,7 +256,7 @@ class Board {
 
                 case 'knight':
 
-                    /*
+                    /*s
                         8        1
                       7            2
 
@@ -265,10 +265,35 @@ class Board {
                         5        4       
                     */
 
-                    let coordsOfMoves
+                    let coordsOfMoves = [
+                        [piece.row + 2, piece.collumn + 1],
+                        [piece.row + 1, piece.collumn + 2],
+                        [piece.row - 1, piece.collumn + 2],
+                        [piece.row - 2, piece.collumn + 1],
+
+                        [piece.row - 2, piece.collumn - 1],
+                        [piece.row - 1, piece.collumn - 2],
+                        [piece.row + 1, piece.collumn - 2],
+                        [piece.row + 2, piece.collumn - 1],
+                    ];
 
                     for (let i = 0; i < 8; i++) {
-                        let piece = this.getPieceOnSquare(piece.row + 2, piece.collumn + 1);
+                        let pieceOnSquare = this.getPieceOnSquare(coordsOfMoves[i][0], coordsOfMoves[i][1]);
+
+                        if (pieceOnSquare !== 'impossible') {
+                            if (!pieceOnSquare || !pieceOnSquare.friendly) {
+                            // add move
+                            moves.push(
+                                {
+                                    type: 'knight',
+                                    newCol: pieceOnSquare.collumn,
+                                    newRow: pieceOnSquare.row,
+                                    oldCol: piece.collumn,
+                                    oldRow: piece.row,
+                                }
+                            );
+                            }
+                        }
                     }
 
                     break;
