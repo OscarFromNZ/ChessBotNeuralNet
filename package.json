@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/OscarFromNZ/ChessBotNeuralNet/issues"
   },
-  "homepage": "https://github.com/OscarFromNZ/ChessBotNeuralNet#readme"
+  "homepage": "https://github.com/OscarFromNZ/ChessBotNeuralNet#readme",
+  "dependencies": {
+    "chess.js": "^1.0.0-beta.7"
+  }
 }

@@ -12,8 +12,6 @@ class Network {
         // maybe make get baby names function? oop
         for (let i = 0; i < hiddenLayerNeurons; i++) this.hiddenLayer.push(new Neuron(this, numberOfInputs, babyNames.names[Math.floor(Math.random() * babyNames.names.length)], 'hidden'));
         for (let i = 0; i < outputLayerNeurons; i++) this.outputLayer.push(new Neuron(this, hiddenLayerNeurons, babyNames.names[Math.floor(Math.random() * babyNames.names.length)], 'output'));
-
-        // add diagram here
     }
 
     input(inputs, target) {

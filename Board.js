@@ -1,3 +1,5 @@
+// FILE NO LONGER IN USE
+
 class Board {
     constructor(playerColour) {
         this.playerPieces = [];
@@ -9,66 +11,59 @@ class Board {
     }
 
     initPieces() {
-        // pawns (i = 1 so that it statrs at 1, 1);
-        for (let i = 1; i < 9; i++) {
+        let data = [
+            // pawns
+            {
+                collumns: [1, 2, 3, 4, 5, 6, 7, 8],
+                rows: [2, 7]
+            },
 
-            // player
-            this.playerPieces.push(
-                {
-                    type: 'pawn',
-                    collumn: i,
-                    row: 2,
-                    friendly: true
-                }
-            );
+            // rooks
+            {
+                collumns: [1, 8],
+                rows: [1, 8]
+            },
 
-            // enemy
-            this.enemyPieces.push(
-                {
-                    type: 'pawn',
-                    collumn: i,
-                    row: 7,
-                    friendly: false
+            // knights
+            {
+                collumns: [1, 8],
+                rows: [2, 7]
+            },
+        ]
+
+        for (let typeOfPiece of data) {
+            for (let i = 0; i < typeOfPiece.collumns.length; i++) {
+                for (let j = 0; j < typeOfPiece.rows.length; j++) {
+
+                    let side = 'enemyPieces';
+
+                    // player (white side)
+                    if (typeOfPiece.rows[i] < 5) {
+                        side = 'playerPieces'
+                    }
+
+                    this[side].push(
+                        {
+                            type: 'knight',
+                            collumn: 7,
+                            row: 8,
+                            friendly: false
+                        }
+                    );
+
+                    console.log(this[side]);
                 }
-            );
+            }
         }
 
-        // rooks
-        this.playerPieces.push(
-            {
-                type: 'rook',
-                collumn: 1,
-                row: 2,
-                friendly: true
-            }
-        )
-
-        this.playerPieces.push(
-            {
-                type: 'rook',
-                collumn: 8,
-                row: 2,
-                friendly: true
-            }
-        )
-
         this.enemyPieces.push(
             {
-                type: 'rook',
-                collumn: 1,
+                type: 'knight',
+                collumn: 7,
                 row: 8,
                 friendly: false
             }
-        )
-
-        this.enemyPieces.push(
-            {
-                type: 'rook',
-                collumn: 8,
-                row: 8,
-                friendly: false
-            }
-        )
+        );
     }
 
     // colour: 0 is white, 1 is black
@@ -151,6 +146,7 @@ class Board {
 
                     break;
 
+                /* warning:  super super super bad code */
                 case 'rook':
                     // check vertical up
                     let isVerticalUpBlocked = false;
@@ -282,16 +278,16 @@ class Board {
 
                         if (pieceOnSquare !== 'impossible') {
                             if (!pieceOnSquare || !pieceOnSquare.friendly) {
-                            // add move
-                            moves.push(
-                                {
-                                    type: 'knight',
-                                    newCol: pieceOnSquare.collumn,
-                                    newRow: pieceOnSquare.row,
-                                    oldCol: piece.collumn,
-                                    oldRow: piece.row,
-                                }
-                            );
+                                // add move
+                                moves.push(
+                                    {
+                                        type: 'knight',
+                                        newCol: pieceOnSquare.collumn,
+                                        newRow: pieceOnSquare.row,
+                                        oldCol: piece.collumn,
+                                        oldRow: piece.row,
+                                    }
+                                );
                             }
                         }
                     }
